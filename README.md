@@ -46,3 +46,14 @@ regions.ipynb - IPython Notebook koji sadrži primere kako radi regions i korist
 regions.py - Python fajl koji sadrži sve funkcije za izdvajanje i spajanje regiona
 
 seeding.txt - Pomoćna tekstualna datoteka koja sadrži mali primer random seedovanja koji se koristi kada se rezultati obučavanja posle žele replicirati
+
+
+
+Od dodatnih biblioteka korištene su:
+-Theano
+
+-Keras
+
+-Lasagne
+
+-VGG16
