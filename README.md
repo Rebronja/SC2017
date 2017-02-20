@@ -39,6 +39,8 @@ poster.pdf - Poster projekta u pdf formatu
 
 prep_dataset.py - Python fajl koji priprema sličice u memoriju pre kreiranja dataset fajla
 
+project.ipynb - IPython notebook za razvoj obrade sličica
+
 regions.ipynb - IPython Notebook koji sadrži primere kako radi regions i koristi se za izdvajanje regiona
 
 regions.py - Python fajl koji sadrži sve funkcije za izdvajanje i spajanje regiona
