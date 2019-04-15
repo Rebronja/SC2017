@@ -1,6 +1,5 @@
 import numpy as np
 
-
 def morph(img, threshold):
     size = 1
     block_center = [1, 1]

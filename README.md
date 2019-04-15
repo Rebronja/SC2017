@@ -7,7 +7,7 @@ Pokretanje projekta:
 2. Pokrenuti gen_test.py - od istih slika se izdvajaju sličice na kojima će se testirati algoritmi.
 3. Pokrenuti prep_dataset.py - od malih sličica izdvojenih prvom skriptom, kreira dataset wrapper klasu
     i nju snima na disk u vidu .hdf5 fajla. Fajl se na dalje može koristiti za pristup datasetu.
-4. Ručno izvršiti project.ipynb
+4. Pokrenuti hiragana_ocr.py i izabrati neku od opcija
 
 Sadržaj fajlova u projektu:
 
@@ -15,17 +15,13 @@ dataset_raw - Fascikla koja sadrži slike koje su prerađene u dataset
 images50x50 - Fascikla koja sadrži slike za dataset, skalirane na dimenziju 50x50
 models - Fascikla koja sadrži modele neuronskih mreža
 
-CustomLogReg.py - Python fajl za implementaciju algoritma za logistic regression
-
 Neural_Network_Zoo.ipynb - IPython Notebook u kome se nalaze modeli za sve implementacije neuronskih mreža
-
-RNN.py - Python fajl u kojem se nalazi implementacija rekurentne neuronske mreže preko lasagne
 
 Razvojna_Sveska.ipynb - IPython Notebook za testiranje neuronskih mreža
 
 dataset.py - Python fajl koji formira dataset
 
-directoryCreation.py - Python fajl koji formira fascikle za slike koje će biti korištene za dataset
+directory_creation.py - Python fajl koji formira fascikle za slike koje će biti korištene za dataset
 
 gen_images.py - Python fajl za kropovanje sličica dimenzija 150x150 od kojih će se praviti dataset
 
@@ -33,7 +29,7 @@ gen_test.py - Python fajl koji generiše test primere sličica
 
 hirautil.py - Python fajl u kom se nalazi implementacija erozije, ispunjavanje regiona i klasa Region
 
-hnn.py - Python fajl preko kojeg se mogu pozivati neuronske mreže
+hiragana_ocr.py - glavni Python fajl
 
 poster.pdf - Poster projekta u pdf formatu
 

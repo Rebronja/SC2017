@@ -62,7 +62,7 @@ class HiraSet:
 
         return np.array(data), labels
 
-    def require_new(self, train_num, test_num):
+    def require_new(self, train_num, test_num, shouldIndex = False):
         train = []
         test = []
         tr_labels = []
@@ -76,7 +76,10 @@ class HiraSet:
             tr_inds = np.random.choice(length, train_num, replace=False)
             for ind in tr_inds:
                 train.append(entry.data()[ind])
-                tr_labels.append(zeros)
+                if shouldIndex:
+                    tr_labels.append(index)
+                else:
+                    tr_labels.append(zeros)
 
             te_inds = []
             for num in range(length):
@@ -86,36 +89,10 @@ class HiraSet:
             te_inds = np.random.choice(te_inds, test_num, replace=False)
             for ind in te_inds:
                 test.append(entry.data()[ind])
-                te_labels.append(zeros)
-
-        return train, test, tr_labels, te_labels
-
-
-    def require_new_RNN(self, train_num, test_num):
-        train = []
-        test = []
-        tr_labels = []
-        te_labels = []
-
-        for index, entry in enumerate(self.__entries):
-            length = len(entry.data())
-            zeros = np.zeros(len(characters()))
-            zeros[index] = 1
-
-            tr_inds = np.random.choice(length, train_num, replace=False)
-            for ind in tr_inds:
-                train.append(entry.data()[ind])
-                tr_labels.append(index)
-
-            te_inds = []
-            for num in range(length):
-                if not num in tr_inds:
-                    te_inds.append(num)
-
-            te_inds = np.random.choice(te_inds, test_num, replace=False)
-            for ind in te_inds:
-                test.append(entry.data()[ind])
-                te_labels.append(index)
+                if shouldIndex:
+                    te_labels.append(index)
+                else:
+                    te_labels.append(zeros)
 
         return train, test, tr_labels, te_labels
 

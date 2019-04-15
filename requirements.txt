@@ -1,0 +1,7 @@
+keras
+https://github.com/Lasagne/Lasagne/archive/master.zip
+scikit-learn
+scikit-image
+scikit-metrics
+theano == 1.0.4
+numpy == 1.16.2

@@ -1,11 +1,11 @@
-from skimage.measure import label, regionprops
-from hirautil import Region
-from operator import attrgetter
+import skimage.measure
+import hirautil
+import operator
 
 
 def extract(img):
-    labeled_img = label(1 - img)
-    regions = regionprops(labeled_img)
+    labeled_img = skimage.measure.label(1 - img)
+    regions = skimage.measure.regionprops(labeled_img)
 
     mx = region_max(regions)
     noise = 10
@@ -15,7 +15,7 @@ def extract(img):
         w = region.bbox[3] - region.bbox[1]
         h = region.bbox[2] - region.bbox[0]
         if w > mx / noise and h > mx / noise:
-            rgs.append(Region(region))
+            rgs.append(hirautil.Region(region))
     rgs = perform_overlap(rgs, mx)
     rgs = perform_overlap(rgs, mx)
     rgs = perform_up(rgs, mx)
@@ -31,7 +31,7 @@ def extract(img):
 
 
 def perform_up(rgs, mx):
-    rgs = sorted(rgs, key=attrgetter('x'))
+    rgs = sorted(rgs, key=operator.attrgetter('x'))
 
     for reg in rgs:
         neighbourhood(reg, rgs, mx)
@@ -46,7 +46,7 @@ def perform_up(rgs, mx):
                     if check_up(reg, rgs[cand]) or check_up_ko(reg, rgs[cand], mx):
                         rgs[cand].used = True
                         rgs[idx].used = True
-                        new = Region()
+                        new = hirautil.Region()
                         new.bbox = merge_up(reg, rgs[cand])
                         new.x = new.bbox[1]
                         tmp.append(new)
@@ -54,7 +54,7 @@ def perform_up(rgs, mx):
             if not rgs[idx].used:
                 tmp.append(rgs[idx])
 
-    rgs = sorted(tmp, key=attrgetter('x'))
+    rgs = sorted(tmp, key=operator.attrgetter('x'))
     return rgs
 
 
@@ -73,7 +73,7 @@ def perform_overlap(rgs, mx):
                     if check_overlap(reg, rgs[cand]):
                         rgs[cand].used = True
                         rgs[idx].used = True
-                        new = Region()
+                        new = hirautil.Region()
                         new.bbox = merge_up(reg, rgs[cand])
                         new.x = new.bbox[1]
                         tmp.append(new)
@@ -81,7 +81,7 @@ def perform_overlap(rgs, mx):
             if not rgs[idx].used:
                 tmp.append(rgs[idx])
 
-    rgs = sorted(tmp, key=attrgetter('x'))
+    rgs = sorted(tmp, key=operator.attrgetter('x'))
     return rgs
 
 
@@ -100,7 +100,7 @@ def perform_right(rgs, mx):
                     if check_right(reg, rgs[cand], mx):
                         rgs[cand].used = True
                         rgs[idx].used = True
-                        new = Region()
+                        new = hirautil.Region()
                         new.bbox = merge_up(reg, rgs[cand])
                         new.x = new.bbox[1]
                         tmp.append(new)
@@ -108,7 +108,7 @@ def perform_right(rgs, mx):
             if not rgs[idx].used:
                 tmp.append(rgs[idx])
 
-    rgs = sorted(tmp, key=attrgetter('x'))
+    rgs = sorted(tmp, key=operator.attrgetter('x'))
     return rgs
 
 
@@ -127,7 +127,7 @@ def perform_handakuten(rgs, mx):
                     if check_handakuten(reg, rgs[cand], mx):
                         rgs[cand].used = True
                         rgs[idx].used = True
-                        new = Region()
+                        new = hirautil.Region()
                         new.bbox = merge_up(reg, rgs[cand])
                         new.x = new.bbox[1]
                         tmp.append(new)
@@ -135,7 +135,7 @@ def perform_handakuten(rgs, mx):
             if not rgs[idx].used:
                 tmp.append(rgs[idx])
 
-    rgs = sorted(tmp, key=attrgetter('x'))
+    rgs = sorted(tmp, key=operator.attrgetter('x'))
     return rgs
 
 

@@ -1,4 +1,4 @@
-import os as os
+import os
 
 if not os.path.exists("images/train"):
     os.makedirs("images/train")
